@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Cadastro</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        form {
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+
+        input[type="radio"], input[type="checkbox"] {
+            width: auto;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Cadastro de Usuário</h1>
+
+    <form id="cadastroForm">
+        <!-- Campo Nome -->
+        <label for="nome">Nome Completo:</label>
+        <input type="text" id="nome" name="nome" required>
+
+        <!-- Campo E-mail -->
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" required>
+
+        <!-- Campo Senha -->
+        <label for="senha">Senha:</label>
+        <input type="password" id="senha" name="senha" minlength="8" required>
+
+        <!-- Campo Data de Nascimento -->
+        <label for="nascimento">Data de Nascimento:</label>
+        <input type="date" id="nascimento" name="nascimento" required>
+
+        <!-- Campo Gênero -->
+        <label>Gênero:</label>
+        <label for="masculino">Masculino</label>
+        <input type="radio" id="feminino" name="genero" value="feminino" required>
+        <label for="feminino">Feminino</label>
+        <input type="radio" id="outro" name="genero" value="outro" required>
+        <label for="outro">Outro</label>
+        <input type="radio" id="outro" name="genero" value="outro" required>
+
+        <!-- Campo Seleção de Cidade -->
+        <label for="cidade">Cidade:</label>
+        <select id="cidade" name="cidade" required>
+            <option value="">Selecione sua cidade</option>
+            <option value="sao_paulo">São Paulo</option>
+            <option value="rio_de_janeiro">Rio de Janeiro</option>
+            <option value="belo_horizonte">Belo Horizonte</option>
+            <option value="porto_alegre">Porto Alegre</option>
+            <option value="maceio">Maceió</option>
+        </select>
+
+        <!-- Campo Interesses -->
+        <label>Interesses:</label>
+        <label for="tecnologia">Tecnologia</label>
+        <input type="checkbox" id="musica" name="interesses" value="musica">
+        <label for="musica">Música</label>
+        <input type="checkbox" id="musica" name="interesses" value="musica">
+        <label for="esportes">Esportes</label>
+        <input type="checkbox" id="esportes" name="interesses" value="esportes">
+
+        <!-- Campo Quantidade de Produtos -->
+        <label for="quantidade">Quantidade de Produtos:</label>
+        <input type="number" id="quantidade" name="quantidade" min="1" max="100">
+
+        <!-- Campo Observações -->
+        <label for="observacoes">Observações Adicionais:</label>
+        <textarea id="observacoes" name="observacoes" rows="4"></textarea>
+
+        <!-- Botão de Envio -->
+        <input type="submit" value="Cadastrar">
+    </form>
+
+    <script>
+        // Validação adicional do formulário
+        document.getElementById('cadastroForm').addEventListener('submit', function(event) {
+            const email = document.getElementById('email');
+            const senha = document.getElementById('senha');
+
+            // Verifica se o campo de email está em um formato válido
+            const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value);
+            if (!emailValido) {
+                alert('Por favor, insira um e-mail válido.');
+                event.preventDefault();
+                return;
+            }
+
+            // Verifica se a senha tem no mínimo 8 caracteres
+            if (senha.value.length < 8) {
+                alert('A senha deve ter no mínimo 8 caracteres.');
+                event.preventDefault();
+            }
+        });
+    </script>
+
+</body>
+</html>
